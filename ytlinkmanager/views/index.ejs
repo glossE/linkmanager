@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Manager</title>
+</head>
+<body>
+  <h1>Link Manager</h1>
+
+  <form action="/links" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="link" placeholder="Link" required>
+    <button type="submit">Add Link</button>
+  </form>
+
+  <ul id="linkList"></ul>
+
+  <script>
+    var links = JSON.parse('<%- links %>');
+    var linkList = document.getElementById('linkList');
+
+    links.forEach(function(link) {
+      var listItem = document.createElement('li');
+      listItem.innerText = link.title + ': ' + link.link;
+      linkList.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Manager</title>
+</head>
+<body>
+  <h1>Link Manager</h1>
+  <div id="links"></div>
+
+  <script>
+    // Fetch links from the server and display them in the UI
+    fetch('/links')
+      .then(response => response.json())
+      .then(links => {
+        const linksContainer = document.getElementById('links');
+
+        // Iterate over the links array and create a link element for each link
+        links.forEach(link => {
+          const linkElement = document.createElement('a');
+          linkElement.href = link.link; // Set the href attribute to the link URL
+          linkElement.textContent = link.title; // Set the link text
+          linksContainer.appendChild(linkElement); // Append the link element to the container
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>
+
